@@ -1,0 +1,24 @@
+<main class="m-4">
+
+    <div>
+
+        <mat-grid-list cols="4">
+            <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows" [style.background]="tile.color">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>Total de Pacientes</mat-card-title>
+                        <mat-card-subtitle>
+                            <small>Número total de pacientes no sistema</small>
+                        </mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <h1>300</h1>
+                    </mat-card-content>
+                </mat-card>
+            </mat-grid-tile>
+        </mat-grid-list>
+
+
+
+    </div>
+</main>
