@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppServiceService } from '../app-service.service';
 
 export interface Tile {
   color: string;
@@ -18,7 +19,7 @@ export interface Tile {
 })
 export class HomeComponentComponent implements OnInit {
 
-  constructor() { }
+  constructor(private appService: AppServiceService) { }
 
   tiles: Tile[] = [
     // {text: 'One', cols: 2, rows: 1, color: 'lightblue', title: 'Total de Pacientes', subtitle: ''},
@@ -29,6 +30,19 @@ export class HomeComponentComponent implements OnInit {
   ];
 
   ngOnInit(): void {
+    this.appService.getDoadores().subscribe(res => {
+      debugger
+    })
+
+    this.appService.getMediaIdadeSange().subscribe(res => {
+      debugger
+    })
+    this.appService.getIMCRateAge().subscribe(res => {
+      debugger
+    })
+    this.appService.getTotalByStates().subscribe(res => {
+      debugger
+    })
   }
 
 }

@@ -6,8 +6,9 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponentComponent } from './home-component/home-component.component';
 
-import {MatCardModule} from '@angular/material/card';
 import { MaterialModule } from './material/material.module';
+import { AppServiceService } from './app-service.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -19,9 +20,10 @@ import { MaterialModule } from './material/material.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AppServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
