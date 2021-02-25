@@ -1,8 +1,53 @@
+<mat-toolbar color="primary">
+    <span>WK IMC - Luiz Fernando França</span>
+</mat-toolbar>
 <main>
-    <div>
-        <mat-grid-list cols="4">
-            <mat-grid-tile [colspan]="4" [rowspan]="1" [style.background]="'lightblue'">
-                <mat-card>
+    <section class="p-1 p-lg-5 p-md-4 p-sm-2">
+        <h2>Sangue</h2>
+        <mat-card class="col-12 col-md-8 col-sm-12 mx-auto shadow-lg">
+            <mat-card-header>
+                <mat-card-title>Banco de Sangue</mat-card-title>
+                <mat-card-subtitle>
+                    <small>A quantidade de possíveis doadores para cada tipo sanguíneo receptor</small>
+                </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="text-center my-3">
+                    <div class="d-inline-block mx-3">
+                        <h1>{{painelBancoDeSangue?.totalPacientes}}</h1>
+                        <p>Total de Pacientes</p>
+                    </div>
+                    <div class="d-inline-block mx-3">
+                        <h1>{{painelBancoDeSangue?.aptosADoar}}</h1>
+                        <p>Aptos a Doar</p>
+                    </div>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Tipo Sanguíneo</th>
+                            <th>Total</th>
+                            <th>Doadores</th>
+                            <th>Receptores</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of painelBancoDeSangue?.details">
+                            <td>{{item?.tipoSanguineo}}</td>
+                            <td>{{item?.totalTipoSanguineo}}</td>
+                            <td>{{item?.podeReceber}}</td>
+                            <td>{{item?.podeDoar}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </mat-card-content>
+        </mat-card>
+    </section>
+    <section class="p-1 p-lg-5 p-md-4 p-sm-2">
+        <h2>Demografia</h2>
+        <div class="container my-5">
+            <div class="row text-center">
+                <mat-card class="col-12 col-md-4 col-sm-12 mx-auto my-3 shadow-lg">
                     <mat-card-header>
                         <mat-card-title>Total de Pacientes</mat-card-title>
                         <mat-card-subtitle>
@@ -13,7 +58,7 @@
                         <h1>300</h1>
                     </mat-card-content>
                 </mat-card>
-                <mat-card>
+                <mat-card class="col-12 col-md-4 col-sm-12 overflow-auto mx-auto my-3 shadow-lg" style="max-height: 270px;">
                     <mat-card-header>
                         <mat-card-title>Total de Pacientes por Estado</mat-card-title>
                         <mat-card-subtitle>
@@ -35,36 +80,12 @@
                         </table>
                     </mat-card-content>
                 </mat-card>
-            </mat-grid-tile>
-            <mat-grid-tile [colspan]="2" [rowspan]="2" [style.background]="'lightblue'">
-                <mat-card>
-                    <mat-card-header>
-                        <mat-card-title>Média de idade por Tipo Sanguíneo</mat-card-title>                        
-                        <mat-card-subtitle>
-                            <small>Qual a média de idade para cada tipo sanguíneo?</small>
-                        </mat-card-subtitle>
-                    </mat-card-header>
-                    <mat-card-content>
-                        <table class="table">
-                            <thead>
-                                <th>Tipo Sanguíneo</th>
-                                <th>Média de Idade</th>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let item of painelBlood">
-                                    <td>{{item?.tipoSanguineo}}</td>
-                                    <td>{{item?.ageRate  | number : '2.2-2' }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </mat-card-content>
-                </mat-card>
-            </mat-grid-tile>
-            <mat-grid-tile [colspan]="2" [rowspan]="1" [style.background]="'lightblue'">
-                <mat-card>
+
+                <mat-card class="col-12 col-md-4 col-sm-12 mx-auto my-3 shadow-lg">
                     <mat-card-header>
                         <mat-card-title>Percentual de Obesidade<main>
-                        </main></mat-card-title>
+                            </main>
+                        </mat-card-title>
                         <mat-card-subtitle>
                             <small>Qual o percentual de obesos entre os homens e entre as mulheres?</small>
                         </mat-card-subtitle>
@@ -86,12 +107,37 @@
                         </table>
                     </mat-card-content>
                 </mat-card>
-            </mat-grid-tile>
-            <mat-grid-tile [colspan]="4" [rowspan]="3" [style.background]="'lightblue'">
-                <mat-card>
+
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <mat-card class="col-12 col-md-4 col-sm-12 mx-auto my-3 shadow-lg">
+                    <mat-card-header>
+                        <mat-card-title>Média de idade por Tipo Sanguíneo</mat-card-title>
+                        <mat-card-subtitle>
+                            <small>Qual a média de idade para cada tipo sanguíneo?</small>
+                        </mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <table class="table">
+                            <thead>
+                                <th>Tipo Sanguíneo</th>
+                                <th>Média de Idade</th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of painelBlood">
+                                    <td>{{item?.tipoSanguineo}}</td>
+                                    <td>{{item?.ageRate | number : '2.2-2' }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </mat-card-content>
+                </mat-card>
+                <mat-card class="col-12 col-md-4 col-sm-12 mx-auto my-3 shadow-lg">
                     <mat-card-header>
                         <mat-card-title>IMC Médio por idade</mat-card-title>
-                        <mat-card-subtitle>                            
+                        <mat-card-subtitle>
                             <small>IMC médio em cada faixa de idade de dez em dez anos</small>
                         </mat-card-subtitle>
                     </mat-card-header>
@@ -104,53 +150,16 @@
                             <tbody>
                                 <tr *ngFor="let item of painelIMCAge">
                                     <td>{{item?.range}}</td>
-                                    <td>{{(item?.media?.imcmedio !== 'NaN' ? item?.media?.imcmedio : 0) | number : '2.2-2'}}</td>
+                                    <td>{{(item?.media?.imcmedio !== 'NaN' ? item?.media?.imcmedio : 0) | number :
+                                        '2.2-2'}}
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                     </mat-card-content>
                 </mat-card>
-            </mat-grid-tile>
-            <mat-grid-tile [colspan]="4" [rowspan]="3" [style.background]="'lightblue'">
-                <mat-card>
-                    <mat-card-header>
-                        <mat-card-title>Banco de Sangue</mat-card-title>
-                        <mat-card-subtitle>
-                            <small>A quantidade de possíveis doadores para cada tipo sanguíneo receptor</small>
-                        </mat-card-subtitle>
-                    </mat-card-header>
-                    <mat-card-content>
-                        <div class="text-center">
-                            <div class="d-inline-block mx-3">
-                                <h1>{{painelBancoDeSangue?.totalPacientes}}</h1>
-                                <p>Total de Pacientes</p>
-                            </div>
-                            <div class="d-inline-block mx-3">
-                                <h1>{{painelBancoDeSangue?.aptosADoar}}</h1>
-                                <p>Aptos a Doar</p>
-                            </div>
-                        </div>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Tipo Sanguíneo</th>
-                                    <th>Total</th>
-                                    <th>Doadores</th>
-                                    <th>Receptores</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let item of painelBancoDeSangue?.details">
-                                    <td>{{item?.tipoSanguineo}}</td>
-                                    <td>{{item?.totalTipoSanguineo}}</td>
-                                    <td>{{item?.podeReceber}}</td>
-                                    <td>{{item?.podeDoar}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </mat-card-content>
-                </mat-card>
-            </mat-grid-tile>
-        </mat-grid-list>
-    </div>
+            </div>
+        </div>
+    </section>
+
 </main>
