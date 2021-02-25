@@ -4,6 +4,7 @@ import { TotalCountDTO } from './model/total';
 import { IMCMediaDTO } from './model/imc-media';
 import { TotalDonorsDTO } from './model/total-donors';
 import { IMCRateAgeDTO } from './model/dto';
+import { BloodRateDTO } from './model/blood-rate';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class AppServiceService {
   }
 
   getMediaIdadeSange() {
-    return this.httpClient.get<any>(`${this.BASE_URL}/statistic/blood`);
+    return this.httpClient.get<BloodRateDTO[]>(`${this.BASE_URL}/statistic/blood`);
   }
 
   getMediaByGender() {
@@ -31,7 +32,7 @@ export class AppServiceService {
   }
 
   getTotalByStates() {
-    return this.httpClient.get<IMCMediaDTO>(`${this.BASE_URL}/statistic/state`);
+    return this.httpClient.get<IMCMediaDTO[]>(`${this.BASE_URL}/statistic/state`);
   }
 
   getTotal() {

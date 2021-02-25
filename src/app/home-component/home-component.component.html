@@ -15,13 +15,24 @@
                 </mat-card>
                 <mat-card>
                     <mat-card-header>
-                        <mat-card-title>Total de Pacientes</mat-card-title>
+                        <mat-card-title>Total de Pacientes por Estado</mat-card-title>
                         <mat-card-subtitle>
                             <small>Número total de pacientes por estado</small>
                         </mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-content>
-                        <h1>300</h1>
+                        <table class="table">
+                            <thead>
+                                <th>UF</th>
+                                <th>Doadores</th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of painelEstado">
+                                    <td>{{item?.estado}}</td>
+                                    <td>{{item?.total}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </mat-card-content>
                 </mat-card>
             </mat-grid-tile>
@@ -141,8 +152,5 @@
                 </mat-card>
             </mat-grid-tile>
         </mat-grid-list>
-
-
-
     </div>
 </main>
