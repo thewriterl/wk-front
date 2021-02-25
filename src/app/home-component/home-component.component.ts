@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AppServiceService } from '../app-service.service';
+import { BloodRateDTO } from '../model/blood-rate';
+import { IMCRateAgeDTO } from '../model/dto';
+import { GenderDTO } from '../model/gender';
+import { TotalDonorsDTO } from '../model/total-donors';
 
 export interface Tile {
   color: string;
@@ -19,7 +23,29 @@ export interface Tile {
 })
 export class HomeComponentComponent implements OnInit {
 
-  constructor(private appService: AppServiceService) { }
+  public painelBancoDeSangue: TotalDonorsDTO;
+  public painelIMCAge: IMCRateAgeDTO;
+  public painelGender: GenderDTO[];
+  public painelBlood: BloodRateDTO[];
+
+  constructor(private appService: AppServiceService) {
+    
+    this.appService.getDoadores().subscribe(res => {
+      this.painelBancoDeSangue = res;
+    });
+
+    this.appService.getIMCRateAge().subscribe(res => {
+      this.painelIMCAge = res;
+    });
+
+    this.appService.getMediaByGender().subscribe(res => {
+      this.painelGender = res;
+    });
+
+    this.appService.getMediaIdadeSange().subscribe(res => {
+      this.painelBlood =res;
+    });
+   }
 
   tiles: Tile[] = [
     // {text: 'One', cols: 2, rows: 1, color: 'lightblue', title: 'Total de Pacientes', subtitle: ''},
@@ -30,18 +56,16 @@ export class HomeComponentComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    this.appService.getDoadores().subscribe(res => {
-      debugger
+
+
+
+    
+    this.appService.getTotalByStates().subscribe(res => {
+      
     })
 
-    this.appService.getMediaIdadeSange().subscribe(res => {
-      debugger
-    })
-    this.appService.getIMCRateAge().subscribe(res => {
-      debugger
-    })
-    this.appService.getTotalByStates().subscribe(res => {
-      debugger
+    this.appService.getTotal().subscribe(res => {
+
     })
   }
 
