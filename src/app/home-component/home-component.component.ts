@@ -4,6 +4,7 @@ import { BloodRateDTO } from '../model/blood-rate';
 import { IMCRateAgeDTO } from '../model/dto';
 import { GenderDTO } from '../model/gender';
 import { IMCMediaDTO } from '../model/imc-media';
+import { TotalCountDTO } from '../model/total';
 import { TotalDonorsDTO } from '../model/total-donors';
 
 export interface Tile {
@@ -29,6 +30,7 @@ export class HomeComponentComponent implements OnInit {
   public painelGender: GenderDTO[];
   public painelBlood: BloodRateDTO[];
   public painelEstado: IMCMediaDTO[];
+  public totalPacientes: TotalCountDTO;
 
   constructor(private appService: AppServiceService) {
     
@@ -50,15 +52,15 @@ export class HomeComponentComponent implements OnInit {
 
     this.appService.getTotalByStates().subscribe(res => {
       this.painelEstado = res;
+    });
+
+    this.appService.getTotal().subscribe(res => {
+      this.totalPacientes = res;
     })
    }
 
   ngOnInit(): void {
 
-
-    this.appService.getTotal().subscribe(res => {
-
-    })
   }
 
 }
